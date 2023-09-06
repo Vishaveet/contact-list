@@ -13,6 +13,7 @@ function App() {
       .then((response) => {
         console.log("res", response.data);
         setData(response.data);
+        //Hi
       })
       .catch((error) => {
         console.log("error");

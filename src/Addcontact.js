@@ -2,12 +2,11 @@ import axios from "axios";
 import { useState } from "react";
 
 function AddContact(props) {
-    // console.log(props.home);
-    const [name,setName]=useState();
+    console.log(props.bol);
+    const [name,setName]=useState([]);
     const [phone,setPhone]=useState();
     const [isTure,setIsture]=useState(false);
     function handleClick(){
-        console.log('ki');
         setIsture(true)
     }
   const handleSubmit = (e) => {
@@ -32,12 +31,14 @@ function AddContact(props) {
         <input type="number" placeholder="Phone" onChange={(e)=>{setPhone(e.target.value)}}></input>
         <br />
         <br />
-        <button onClick={handleClick}>Add</button>
+        <button className="add-Con" onClick={handleClick}>Add</button>
       </form>
       <br/>
       <br/>
       <br/>
       {isTure ? <h3 className="success">Contact Add Successsfully</h3> : "" }
+      {isTure ? <button className="btn" 
+      onClick={props.bol}>back</button> : ""}
     </>
   );
 }

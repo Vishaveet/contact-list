@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./app.css";
 import AddContact from "./Addcontact";
+import EditContact from "./EditContact";
+import Display from "./Display";
+import DeleteContact from "./DeleteContact";
 
 function App() {
   const [data, setData] = useState([]);
-  const [isture,setIsture]=useState(false);
-  const [isBox,SetIsBox]=useState(true);
-  const [isHome,setIsHome]=useState(false);
+  const [isture, setIsture] = useState();
+  const [isHome, setIsHome] = useState(false);
   useEffect(() => {
     axios
       .get("https://jsonplaceholder.typicode.com/users")
@@ -19,18 +21,17 @@ function App() {
         console.log("error");
       });
   }, []);
-  const addContact=()=>{
-    console.log('hi');
-    setIsture(prev=>!prev);
-
-  }
+  const addContact = () => {
+    setIsture((prev) => (prev = !prev));
+  };
+  const handleChange = () => {
+    setIsture((prev) => (prev = !prev));
+  };
   return (
     <>
-      {/* {console.log(data1)} */}
-      {/* {console.log(data.length===0)} */}
       <div className="container">
-        <div className={isture ? "hide-box" :"box"}>
-          <h3>Contacts</h3>
+        <div className={isture ? "hide-box" : "box"}>
+          <h3 className="heading">Contacts</h3>
           <div className="header">
             <div className="input-box">
               <input type="text" placeholder="search" />
@@ -39,7 +40,7 @@ function App() {
                 src="https://cdn-icons-png.flaticon.com/128/54/54481.png"
               />
             </div>
-            <img 
+            <img
               onClick={addContact}
               alt="icon"
               src="https://cdn-icons-png.flaticon.com/128/748/748113.png"
@@ -48,19 +49,11 @@ function App() {
           <div className="list">
             {data.length === 0
               ? ""
-              : data.map((item, index) => (
-                  <div className={isBox ? "conatct-box" : "conatct-box-new"} onClick={(prev)=>SetIsBox(!prev)}>
-                    <img
-                      alt="img"
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrY_W6KrP-a7AEgV1EGganXGC4LBZ44E4d3WwyoeA-sw&s"
-                    />
-                    <h3>{item.name} </h3>
-                  </div>
-                ))}
+              : data.map((item, index) => <Display name={item.name} />)}
           </div>
         </div>
-        <div className={isture ? "new-box" : "" }>
-           {isture ? <AddContact home={isHome}/>:""}
+        <div className={isture ? "new-box" : ""}>
+          {isture ? <AddContact home={isHome} bol={handleChange} /> : ""}
         </div>
       </div>
     </>
@@ -78,3 +71,5 @@ export default App;
               <h3>Raj </h3>
             </div> */
 }
+
+// {(!isture && isEdit) ? <EditContact item={item.name}/>: ""}

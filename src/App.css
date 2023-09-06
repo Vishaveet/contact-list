@@ -38,6 +38,7 @@
 .input-box input{
     margin-left: 6px;
     height: 100%;
+    font-size: 20px;
     /* background-color:wheat; */
     width: 90%;
     border: none;

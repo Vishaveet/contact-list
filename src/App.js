@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import "./app.css";
 import AddContact from "./Addcontact";
 import Display from "./Display";
 
